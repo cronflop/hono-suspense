@@ -1,5 +1,6 @@
 import { jsxRenderer } from 'hono/jsx-renderer'
 
+// Unused but should also work with `stream:true`
 export const renderer = jsxRenderer(({ children }) => {
   return (
     <html>
@@ -9,4 +10,4 @@ export const renderer = jsxRenderer(({ children }) => {
       <body>{children}</body>
     </html>
   )
-})
+}, { stream: true })

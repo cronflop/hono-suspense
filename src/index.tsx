@@ -1,24 +1,12 @@
 import { Hono } from 'hono'
 import { renderToReadableStream, Suspense } from 'hono/jsx/streaming'
-import { renderer } from './renderer'
 
 const app = new Hono()
 
-app.use(renderer)
-
 const AsyncComponent = async () => {
-  await new Promise((r) => setTimeout(r, 1000)) // sleep 1s
-  return <div>Done!</div>
+  await new Promise((r) => setTimeout(r, 500))
+  return <div>async loaded</div>
 }
-
-// app.get('/', (c) => {
-//   return c.html(
-//     <>
-//       <h1>Headline</h1>
-//       <AsyncComponent />
-//     </>
-//   )
-// })
 
 app.get('/', (c) => {
   const stream = renderToReadableStream(
